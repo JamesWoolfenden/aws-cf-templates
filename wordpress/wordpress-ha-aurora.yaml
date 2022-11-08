@@ -184,10 +184,10 @@ Parameters:
     Default: 'www.'
   LoadBalancerIdleTimeout:
     Description: 'The idle timeout value, in seconds.'
-    Type: Number
-    Default: 60
-    MinValue: 1
-    MaxValue: 4000
+    Type: String
+    Default: "60"
+    # MinValue: 1
+    # MaxValue: 4000
 Mappings:
   RegionMap:
     'af-south-1':
@@ -428,8 +428,8 @@ Resources:
     Properties:
       IpAddressType: dualstack
       LoadBalancerAttributes:
-      - Key: 'idle_timeout.timeout_seconds'
-        Value: !Ref LoadBalancerIdleTimeout
+      # - Key: 'idle_timeout.timeout_seconds'
+      #   Value: !Ref LoadBalancerIdleTimeout
       - Key: 'routing.http2.enabled'
         Value: 'true'
       - Key: 'access_logs.s3.enabled'
