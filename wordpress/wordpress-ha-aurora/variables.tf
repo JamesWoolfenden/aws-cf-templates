@@ -35,6 +35,16 @@ variable "ParentZoneStack" {
 }
 variable "BlogAdminEMail" {
   type   = string
+  default= "Just another WordPress blog"
+  description= "The title of the WordPress blog."
+}
+variable "ParentWAFStack" {
+  type   = string
+  default= ""
+  description= "Optional stack name of parent WAF stack based on the security/waf.yaml template."
+}
+variable "WebServerSystemsManagerAccess" {
+  type   = bool
   default= null
   description= "The email address of the WordPress admin."
 }

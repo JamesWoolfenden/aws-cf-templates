@@ -145,8 +145,8 @@ Parameters:
     Default: ''
   LoadBalancerIdleTimeout:
     Description: 'The idle timeout value, in seconds.'
-    Type: Number
-    Default: 60
+    Type: String
+    Default: "60"
     MinValue: 1
     MaxValue: 4000
   InstanceType:
@@ -160,16 +160,14 @@ Parameters:
     AllowedValues: [1, 3, 5, 7, 14, 30, 60, 90, 120, 150, 180, 365, 400, 545, 731, 1827, 3653]
   MaxSize:
     Description: 'The maximum size of the Auto Scaling group.'
-    Type: Number
-    Default: 4
+    Type: String
+    Default: "4"
     ConstraintDescription: 'Must be >= 1'
-    MinValue: 1
   MinSize:
     Description: 'The minimum size of the Auto Scaling group.'
-    Type: Number
-    Default: 2
+    Type: String
+    Default: "2"
     ConstraintDescription: 'Must be >= 1'
-    MinValue: 1
   DrainingTimeoutInSeconds:
     Description: 'Maximum time in seconds an EC2 instance waits when terminating until all containers are moved to another EC2 instance (draining).'
     Type: Number
@@ -894,8 +892,8 @@ Resources:
       LaunchTemplate:
         LaunchTemplateId: !Ref LaunchTemplate
         Version: !GetAtt 'LaunchTemplate.LatestVersionNumber'
-      MinSize: !Ref MinSize
-      MaxSize: !Ref MaxSize
+      # MinSize: !Ref MinSize
+      # MaxSize: !Ref MaxSize
       Cooldown: '120'
       HealthCheckGracePeriod: 900 # needs to be in sync with CreationPolicy/UpdatePolicy timeout
       HealthCheckType: ELB
@@ -1497,7 +1495,7 @@ Resources:
         Variables:
           CLUSTER: !Ref Cluster
           QUEUE_URL: !Ref AutoScalingGroupLifecycleHookQueue
-          DRAINING_TIMEOUT: !Ref DrainingTimeoutInSeconds
+          # DRAINING_TIMEOUT: !Ref DrainingTimeoutInSeconds
       ReservedConcurrentExecutions: 1
   DrainInstanceLogGroup:
     Type: 'AWS::Logs::LogGroup'

@@ -138,24 +138,24 @@ Parameters:
     Default: ''
   IngressTcpPort1:
     Description: 'Optional port allowing ingress TCP traffic.'
-    Type: String
-    Default: ''
+    Type: Number
+    Default: 0
   IngressTcpParentClientStack1:
     Description: 'Optional stack name of parent Client Security Group stack based on state/client-sg.yaml that is required to access IngressTcpPort1 (if you leave this blank, IngressTcpPort1 is open to the world 0.0.0.0/0).'
     Type: String
     Default: ''
   IngressTcpPort2:
     Description: 'Optional port allowing ingress TCP traffic.'
-    Type: String
-    Default: ''
+    Type: Number
+    Default: 0
   IngressTcpParentClientStack2:
     Description: 'Optional stack name of parent Client Security Group stack based on state/client-sg.yaml that is required to access IngressTcpPort2 (if you leave this blank, IngressTcpPort2 is open to the world 0.0.0.0/0).'
     Type: String
     Default: ''
   IngressTcpPort3:
     Description: 'Optional port allowing ingress TCP traffic.'
-    Type: String
-    Default: ''
+    Type: Number
+    Default: 0
   IngressTcpParentClientStack3:
     Description: 'Optional stack name of parent Client Security Group stack based on state/client-sg.yaml that is required to access IngressTcpPort3 (if you leave this blank, IngressTcpPort3 is open to the world 0.0.0.0/0).'
     Type: String
@@ -937,7 +937,7 @@ Resources:
         HostedZoneName: {'Fn::ImportValue': !Sub '${ParentZoneStack}-HostedZoneName'}
       ResourceRecords:
       - !Ref ElasticIP
-      TTL: 60
+      TTL: '60'
       Type: A
   ElasticIP:
     Type: 'AWS::EC2::EIP'

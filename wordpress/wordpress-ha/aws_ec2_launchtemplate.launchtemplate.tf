@@ -2,6 +2,7 @@ resource "aws_launch_template" "LaunchTemplate" {
   name = "LaunchTemplate"
   block_device_mappings {
     ebs {
+      volume_size=<nil>
     }
     no_device=""
     virtual_name=""

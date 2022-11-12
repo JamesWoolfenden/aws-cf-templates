@@ -5,3 +5,6 @@
 .idea/
 .terraform/
 .terraform.lock.hcl
+*.orig
+*.zip
+*.exe
