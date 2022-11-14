@@ -1,6 +1,6 @@
 resource "aws_autoscaling_group" "AutoScalingGroup" {
-  max_size = 1
-  min_size = 1
+  max_size = 4
+  min_size = 2
   name="AutoScalingGroup"
   capacity_rebalance= false
   default_cooldown=600

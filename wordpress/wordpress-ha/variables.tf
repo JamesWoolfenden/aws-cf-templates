@@ -118,10 +118,55 @@ variable "EFSBackupScheduleExpression" {
   default= "cron(0 5 ? * * *)"
   description= "A CRON expression specifying when AWS Backup initiates a backup job."
 }
+variable "WebServerLogsRetentionInDays" {
+  type   = number
+  default= 14
+  description= "Specifies the number of days you want to retain log events."
+}
 variable "PermissionsBoundary" {
   type   = string
   default= ""
   description= "Optional ARN for a policy that will be used as the permission boundary for all roles created by this template."
+}
+variable "ParentS3StackAccessLog" {
+  type   = string
+  default= ""
+  description= "Optional stack name of parent s3 stack based on state/s3.yaml template (with Access set to ElbAccessLogWrite) to store access logs."
+}
+variable "ParentSSHBastionStack" {
+  type   = string
+  default= ""
+  description= "Optional but recommended stack name of parent SSH bastion host/instance stack based on vpc/vpc-*-bastion.yaml template."
+}
+variable "ParentVPCStack" {
+  type   = string
+  default= null
+  description= "Stack name of parent VPC stack based on vpc/vpc-*azs.yaml template."
+}
+variable "SubDomainNameWithDot" {
+  type   = string
+  default= "www."
+  description= "Name that is used to create the DNS entry with trailing dot, e.g. §{SubDomainNameWithDot}§{HostedZoneName}. Leave blank for naked (or apex and bare) domain."
+}
+variable "BlogTitle" {
+  type   = string
+  default= "Just another WordPress blog"
+  description= "The title of the WordPress blog."
+}
+variable "WebServerKeyName" {
+  type   = string
+  default= ""
+  description= "Optional key pair of the ec2-user to establish a SSH connection to the web server."
+}
+variable "BlogAdminEMail" {
+  type   = string
+  default= null
+  description= "The email address of the WordPress admin."
+}
+variable "BlogAdminPassword" {
+  type   = string
+  default= null
+  description= "A password for the WordPress admin."
 }
 variable "WebServerIAMUserSSHAccess" {
   type   = bool
@@ -130,21 +175,34 @@ variable "WebServerIAMUserSSHAccess" {
 }
 variable "EFSProvisionedThroughputInMibps" {
   type   = number
+  default= "t3.micro"
+  description= "The instance type of web servers (e.g. t3.micro)."
+}
+variable "WebServerSystemsManagerAccess" {
+  type   = bool
   default= 0
+  description= "Enable AWS Systems Manager agent and authorization."
+}
+variable "CloudFrontAcmCertificate" {
+  type   = string
+  default= null
   description= "The provisioned throughput for the Elastic File System (EFS) in Mibps. Default is 0 which enables the bursting mode and disables provisioned throughput."
 }
 
 variable "vpc_id" {
   type=string
   default=""
+  description= "The master password for the DB instance. Must not be changed!"
 }
 
 variable "HostedZoneName" {
   type=string
   default="sato"
+  description= "Optional stack name of parent WAF stack based on the security/waf.yaml template."
 }
 
 variable "zone_id" {
   type=string
   default="Z0613304D03LG1SU5BI"
+  description= "Stack name of parent zone stack based on vpc/zone-*.yaml template."
 }

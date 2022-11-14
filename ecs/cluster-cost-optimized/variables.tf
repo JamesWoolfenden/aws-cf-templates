@@ -38,10 +38,25 @@ variable "ParentS3StackAccessLog" {
   default= ""
   description= "Optional stack name of parent s3 stack based on state/s3.yaml template (with Access set to ElbAccessLogWrite) to store access logs."
 }
+variable "MaxSize" {
+  type   = number
+  default= 4
+  description= "The maximum size of the Auto Scaling group."
+}
+variable "ParentAuthProxyStack" {
+  type   = string
+  default= ""
+  description= "Optional stack name of parent auth proxy stack based on security/auth-proxy-*.yaml template."
+}
 variable "StopContainerTimeoutInSeconds" {
   type   = number
   default= 30
   description= "Time in seconds the ECS agent waits before killing a stopped container (see ECS_CONTAINER_STOP_TIMEOUT)."
+}
+variable "DrainingTimeoutInSeconds" {
+  type   = number
+  default= 600
+  description= "Maximum time in seconds an EC2 instance waits when terminating until all containers are moved to another EC2 instance (draining)."
 }
 variable "IAMUserSSHAccess" {
   type   = bool
@@ -77,6 +92,11 @@ variable "InstanceType" {
   type   = string
   default= "t2.micro"
   description= "The instance type of the EC2 instances of the ECS cluster."
+}
+variable "LoadBalancerCertificateArn" {
+  type   = string
+  default= ""
+  description= "Optional Amazon Resource Name (ARN) of the certificate to associate with the load balancer."
 }
 variable "LoadBalancerScheme" {
   type   = string

@@ -2,7 +2,7 @@ resource "aws_lb_target_group" "DefaultTargetGroup" {
   health_check {
     enabled=false
     interval=15
-    matcher="{<nil> 0xc00007b380   [] map[] }"
+    matcher="{<nil> 0xc0002b8430   [] map[] }"
     path = "/v1/metadata"
     port = "51678"
     protocol="HTTP"

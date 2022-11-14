@@ -1,4 +1,6 @@
 resource "aws_autoscaling_group" "AutoScalingGroup" {
+  max_size = 1
+  min_size = 1
   name="AutoScalingGroup"
   capacity_rebalance= false
   default_cooldown=120
@@ -9,7 +11,6 @@ resource "aws_autoscaling_group" "AutoScalingGroup" {
     version=1
   }
   load_balancers         = []
-  enabled_metrics        = []
   protect_from_scale_in  = false
   tag {
     key="Name"

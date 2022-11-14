@@ -4,5 +4,5 @@ resource "aws_autoscaling_policy" "ScaleDownPolicy" {
   name                   = "ScaleDownPolicy"
   min_adjustment_magnitude = "1"
   policy_type = "StepScaling"
-  step_adjustment="[{0xc000041298 <nil> -25   [] map[] }]"
+  step_adjustment="[{0xc0004020a8 <nil> -25   [] map[] }]"
 }

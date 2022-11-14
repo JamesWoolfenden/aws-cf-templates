@@ -5,7 +5,7 @@ resource "aws_cloudwatch_event_rule" "SchedulableContainersCron" {
   event_pattern = jsonencode(null)
 }
 
-resource "aws_cloudwatch_event_target" "lambda" {
+resource "aws_cloudwatch_event_target" "lambda0" {
   arn  = ""
   rule = aws_cloudwatch_event_rule.SchedulableContainersCron.id
 }
