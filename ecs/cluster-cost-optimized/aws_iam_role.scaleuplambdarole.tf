@@ -4,8 +4,8 @@ resource "aws_iam_role" "ScaleUpLambdaRole" {
   assume_role_policy = jsonencode({"Statement":[{"Action":"sts:AssumeRole","Effect":"Allow","Principal":{"Service":"lambda.amazonaws.com"}}],"Version":"2012-10-17"})
 }
 
-resource "aws_iam_role_policy" "autoscalingjoVWRk" {
-  name="autoscalingjoVWRk"
+resource "aws_iam_role_policy" "autoscalingefvCZM" {
+  name="autoscalingefvCZM"
   role=aws_iam_role.ScaleUpLambdaRole.id
   policy = jsonencode({"Statement":[{"Action":"autoscaling:ExecutePolicy","Effect":"Allow","Resource":"*"}]})
 }

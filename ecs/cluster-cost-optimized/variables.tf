@@ -1,3 +1,28 @@
+variable "ParentClientStack3" {
+  type   = string
+  default= ""
+  description= "Optional stack name of parent Client Security Group stack based on state/client-sg.yaml template to allow network access from the cluster to whatever uses the client security group."
+}
+variable "ParentS3StackAccessLog" {
+  type   = string
+  default= ""
+  description= "Optional stack name of parent s3 stack based on state/s3.yaml template (with Access set to ElbAccessLogWrite) to store access logs."
+}
+variable "PermissionsBoundary" {
+  type   = string
+  default= ""
+  description= "Optional ARN for a policy that will be used as the permission boundary for all roles created by this template."
+}
+variable "DrainingTimeoutInSeconds" {
+  type   = number
+  default= 600
+  description= "Maximum time in seconds an EC2 instance waits when terminating until all containers are moved to another EC2 instance (draining)."
+}
+variable "InstanceType" {
+  type   = string
+  default= "t2.micro"
+  description= "The instance type of the EC2 instances of the ECS cluster."
+}
 variable "LoadBalancerCertificateArn" {
   type   = string
   default= ""
@@ -13,25 +38,10 @@ variable "MinSize" {
   default= 2
   description= "The minimum size of the Auto Scaling group."
 }
-variable "ParentAuthProxyStack" {
-  type   = string
-  default= ""
-  description= "Optional stack name of parent auth proxy stack based on security/auth-proxy-*.yaml template."
-}
-variable "ParentClientStack2" {
-  type   = string
-  default= ""
-  description= "Optional stack name of parent Client Security Group stack based on state/client-sg.yaml template to allow network access from the cluster to whatever uses the client security group."
-}
-variable "ParentS3StackAccessLog" {
-  type   = string
-  default= ""
-  description= "Optional stack name of parent s3 stack based on state/s3.yaml template (with Access set to ElbAccessLogWrite) to store access logs."
-}
-variable "InstanceType" {
-  type   = string
-  default= "t2.micro"
-  description= "The instance type of the EC2 instances of the ECS cluster."
+variable "SystemsManagerAccess" {
+  type   = bool
+  default= true
+  description= "Enable AWS Systems Manager agent and authorization."
 }
 variable "LoadBalancerScheme" {
   type   = string
@@ -43,50 +53,45 @@ variable "ManagedPolicyArns" {
   default= ""
   description= "Optional comma-delimited list of IAM managed policy ARNs to attach to the instance's IAM role"
 }
-variable "ParentAlertStack" {
+variable "ParentSSHBastionStack" {
   type   = string
   default= ""
-  description= "Optional but recommended stack name of parent alert stack based on operations/alert.yaml template."
-}
-variable "ParentClientStack1" {
-  type   = string
-  default= ""
-  description= "Optional stack name of parent Client Security Group stack based on state/client-sg.yaml template to allow network access from the cluster to whatever uses the client security group."
+  description= "Optional but recommended stack name of parent SSH bastion host/instance stack based on vpc/vpc-*-bastion.yaml template."
 }
 variable "StopContainerTimeoutInSeconds" {
   type   = number
   default= 30
   description= "Time in seconds the ECS agent waits before killing a stopped container (see ECS_CONTAINER_STOP_TIMEOUT)."
 }
-variable "IAMUserSSHAccess" {
-  type   = bool
-  default= false
-  description= "Synchronize public keys of IAM users to enable personalized SSH access (Doc: https://cloudonaut.io/manage-aws-ec2-ssh-access-with-iam/)."
-}
-variable "ParentSSHBastionStack" {
-  type   = string
-  default= ""
-  description= "Optional but recommended stack name of parent SSH bastion host/instance stack based on vpc/vpc-*-bastion.yaml template."
-}
 variable "SubnetsReach" {
   type   = string
   default= "Public"
   description= "Should the cluster have direct access to the Internet or do you prefer private subnets with NAT?"
 }
-variable "PermissionsBoundary" {
+variable "MaxSize" {
+  type   = number
+  default= 4
+  description= "The maximum size of the Auto Scaling group."
+}
+variable "ParentAlertStack" {
   type   = string
   default= ""
-  description= "Optional ARN for a policy that will be used as the permission boundary for all roles created by this template."
+  description= "Optional but recommended stack name of parent alert stack based on operations/alert.yaml template."
 }
-variable "SystemsManagerAccess" {
+variable "ParentAuthProxyStack" {
+  type   = string
+  default= ""
+  description= "Optional stack name of parent auth proxy stack based on security/auth-proxy-*.yaml template."
+}
+variable "ParentClientStack1" {
+  type   = string
+  default= ""
+  description= "Optional stack name of parent Client Security Group stack based on state/client-sg.yaml template to allow network access from the cluster to whatever uses the client security group."
+}
+variable "IAMUserSSHAccess" {
   type   = bool
-  default= true
-  description= "Enable AWS Systems Manager agent and authorization."
-}
-variable "DrainingTimeoutInSeconds" {
-  type   = number
-  default= 600
-  description= "Maximum time in seconds an EC2 instance waits when terminating until all containers are moved to another EC2 instance (draining)."
+  default= false
+  description= "Synchronize public keys of IAM users to enable personalized SSH access (Doc: https://cloudonaut.io/manage-aws-ec2-ssh-access-with-iam/)."
 }
 variable "KeyName" {
   type   = string
@@ -98,12 +103,7 @@ variable "LogsRetentionInDays" {
   default= 14
   description= "Specifies the number of days you want to retain log events in the specified log group."
 }
-variable "MaxSize" {
-  type   = number
-  default= 4
-  description= "The maximum size of the Auto Scaling group."
-}
-variable "ParentClientStack3" {
+variable "ParentClientStack2" {
   type   = string
   default= ""
   description= "Optional stack name of parent Client Security Group stack based on state/client-sg.yaml template to allow network access from the cluster to whatever uses the client security group."

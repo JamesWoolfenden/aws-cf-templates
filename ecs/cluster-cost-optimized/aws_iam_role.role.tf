@@ -5,32 +5,32 @@ resource "aws_iam_role" "Role" {
 }
 
 
-resource "aws_iam_role_policy" "ecsVatfaK" {
-  name="ecsVatfaK"
+resource "aws_iam_role_policy" "ecspXsHbi" {
+  name="ecspXsHbi"
   role=aws_iam_role.Role.id
   policy = jsonencode({"Statement":[{"Action":["ecs:DiscoverPollEndpoint"],"Effect":"Allow","Resource":"*"}],"Version":"2012-10-17"})
 }
 
-resource "aws_iam_role_policy" "ecs-clusterVatfaK" {
-  name="ecs-clusterVatfaK"
+resource "aws_iam_role_policy" "ecs-clusterpXsHbi" {
+  name="ecs-clusterpXsHbi"
   role=aws_iam_role.Role.id
   policy = jsonencode({"Statement":[{"Action":["ecs:RegisterContainerInstance","ecs:SubmitContainerStateChange","ecs:SubmitTaskStateChange","ecs:ListContainerInstances"],"Effect":"Allow","Resource":"arn:aws:ecs:us-east-1:123456789012:cluster/"}],"Version":"2012-10-17"})
 }
 
-resource "aws_iam_role_policy" "ecs-cluster-instanceVatfaK" {
-  name="ecs-cluster-instanceVatfaK"
+resource "aws_iam_role_policy" "ecs-cluster-instancepXsHbi" {
+  name="ecs-cluster-instancepXsHbi"
   role=aws_iam_role.Role.id
   policy = jsonencode({"Statement":[{"Action":["ecs:Poll","ecs:StartTelemetrySession","ecs:UpdateContainerInstancesState","ecs:ListTasks","ecs:DescribeContainerInstances"],"Condition":{"StringEquals":{"ecs:cluster":"arn:aws:ecs:us-east-1:123456789012:cluster/"}},"Effect":"Allow","Resource":"arn:aws:ecs:us-east-1:123456789012:container-instance/*"}],"Version":"2012-10-17"})
 }
 
-resource "aws_iam_role_policy" "ecrVatfaK" {
-  name="ecrVatfaK"
+resource "aws_iam_role_policy" "ecrpXsHbi" {
+  name="ecrpXsHbi"
   role=aws_iam_role.Role.id
   policy = jsonencode({"Statement":[{"Action":["ecr:GetAuthorizationToken","ecr:BatchCheckLayerAvailability","ecr:GetDownloadUrlForLayer","ecr:BatchGetImage"],"Effect":"Allow","Resource":"*"}],"Version":"2012-10-17"})
 }
 
-resource "aws_iam_role_policy" "logsVatfaK" {
-  name="logsVatfaK"
+resource "aws_iam_role_policy" "logspXsHbi" {
+  name="logspXsHbi"
   role=aws_iam_role.Role.id
   policy = jsonencode({"Statement":[{"Action":["logs:CreateLogGroup","logs:CreateLogStream","logs:PutLogEvents","logs:DescribeLogStreams"],"Effect":"Allow","Resource":null}],"Version":"2012-10-17"})
 }
