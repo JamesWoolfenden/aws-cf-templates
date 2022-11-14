@@ -3,27 +3,27 @@ resource "aws_launch_template" "LaunchTemplate" {
   block_device_mappings {
     ebs {
     }
-    no_device=""
-    virtual_name=""
-    device_name = "/dev/xvda"
+    no_device    = ""
+    virtual_name = ""
+    device_name  = "/dev/xvda"
   }
   disable_api_stop        = false
   disable_api_termination = false
   ebs_optimized           = false
   iam_instance_profile {
-    arn  = ""
+    arn = aws_iam_instance_profile.InstanceProfile.arn
   }
-  image_id =  "ami-00eb90638788e810f"
+  image_id      = "ami-00eb90638788e810f"
   instance_type = "t2.micro"
-  kernel_id = ""
-  key_name = ""
+  kernel_id     = ""
+  key_name      = ""
   metadata_options {
     http_tokens                 = "required"
     http_put_response_hop_limit = 2
   }
-  ram_disk_id = ""
-  vpc_security_group_ids = []
-  user_data = <<-EOF
+  ram_disk_id            = ""
+  vpc_security_group_ids = [aws_security_group.SecurityGroup.id]
+  user_data              = <<-EOF
 #!/bin/bash -ex
 trap '/opt/aws/bin/cfn-signal -e 1 --stack goformation-stack --resource AutoScalingGroup --region us-east-1' ERR
 echo "ECS_CLUSTER=" >> /etc/ecs/ecs.config

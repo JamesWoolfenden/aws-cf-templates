@@ -1,11 +1,11 @@
 resource "aws_iam_role" "AutoScalingGroupLifecycleHookIAMRole" {
-  force_detach_policies=false
+  force_detach_policies = false
   inline_policy {}
-  assume_role_policy = jsonencode({"Statement":[{"Action":"sts:AssumeRole","Effect":"Allow","Principal":{"Service":"autoscaling.amazonaws.com"}}],"Version":"2012-10-17"})
+  assume_role_policy = jsonencode({ "Statement" : [{ "Action" : "sts:AssumeRole", "Effect" : "Allow", "Principal" : { "Service" : "autoscaling.amazonaws.com" } }], "Version" : "2012-10-17" })
 }
 
-resource "aws_iam_role_policy" "sqsnnJqBd" {
-  name="sqsnnJqBd"
-  role=aws_iam_role.AutoScalingGroupLifecycleHookIAMRole.id
-  policy = jsonencode({"Statement":[{"Action":["sqs:SendMessage","sqs:GetQueueUrl"],"Effect":"Allow","Resource":null,"Sid":"write"}],"Version":"2012-10-17"})
+resource "aws_iam_role_policy" "sqsBWCtjS" {
+  name   = "sqsBWCtjS"
+  role   = aws_iam_role.AutoScalingGroupLifecycleHookIAMRole.id
+  policy = jsonencode({ "Statement" : [{ "Action" : ["sqs:SendMessage", "sqs:GetQueueUrl"], "Effect" : "Allow", "Resource" : null, "Sid" : "write" }], "Version" : "2012-10-17" })
 }
