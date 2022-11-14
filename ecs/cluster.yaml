@@ -172,8 +172,8 @@ Parameters:
     MinValue: 1
   DrainingTimeoutInSeconds:
     Description: 'Maximum time in seconds an EC2 instance waits when terminating until all containers are moved to another EC2 instance (draining).'
-    Type: Number
-    Default: 600 # 10 minutes
+    Type: String
+    Default: "600" # 10 minutes
     ConstraintDescription: 'Must be in the range [60-86400]'
     MinValue: 60
     MaxValue: 86400 # 24 hours
@@ -557,8 +557,8 @@ Resources:
     Properties:
       IpAddressType: !If [HasLoadBalancerSchemeInternal, 'ipv4', 'dualstack']
       LoadBalancerAttributes:
-      - Key: 'idle_timeout.timeout_seconds'
-        Value: !Ref LoadBalancerIdleTimeout
+      # - Key: 'idle_timeout.timeout_seconds'
+      #   Value: !Ref LoadBalancerIdleTimeout
       - Key: 'routing.http2.enabled'
         Value: 'true'
       - Key: 'access_logs.s3.enabled'
@@ -894,8 +894,8 @@ Resources:
       LaunchTemplate:
         LaunchTemplateId: !Ref LaunchTemplate
         Version: !GetAtt 'LaunchTemplate.LatestVersionNumber'
-      MinSize: !Ref MinSize
-      MaxSize: !Ref MaxSize
+      # MinSize: !Ref MinSize
+      # MaxSize: !Ref MaxSize
       Cooldown: '120'
       HealthCheckGracePeriod: 900 # needs to be in sync with CreationPolicy/UpdatePolicy timeout
       HealthCheckType: ELB
