@@ -7,7 +7,7 @@ resource "aws_autoscaling_group" "AutoScalingGroup" {
   health_check_grace_period= 900
   health_check_type      = "ELB"
   launch_template     {
-    name   = ""
+    name   = aws_launch_template.LaunchTemplate.id
     version=1
   }
   load_balancers         = []

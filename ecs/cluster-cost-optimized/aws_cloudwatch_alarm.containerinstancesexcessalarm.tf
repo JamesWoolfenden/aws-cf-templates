@@ -31,7 +31,7 @@ resource "aws_cloudwatch_metric_alarm" "ContainerInstancesExcessAlarm" {
       namespace="AWS/AutoScaling"
       period=60
       stat="Minimum"
-      unit=""
+      unit="Seconds"
     }
   }
   metric_query {
@@ -46,7 +46,7 @@ resource "aws_cloudwatch_metric_alarm" "ContainerInstancesExcessAlarm" {
       namespace="AWS/ECS"
       period=60
       stat="Maximum"
-      unit=""
+      unit="Seconds"
     }
   }
   metric_query {
@@ -61,7 +61,7 @@ resource "aws_cloudwatch_metric_alarm" "ContainerInstancesExcessAlarm" {
       namespace="AWS/ECS"
       period=60
       stat="Maximum"
-      unit=""
+      unit="Seconds"
     }
   }
   alarm_description = "Cluster is wasting container instances"
