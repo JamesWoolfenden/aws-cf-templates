@@ -4,7 +4,6 @@ resource "aws_lambda_function" "DrainInstanceLambda" {
   environment {
     variables={ 
 	"CLUSTER"=""
-	"DRAINING_TIMEOUT"="600"
 	"QUEUE_URL"=""
  }
   }

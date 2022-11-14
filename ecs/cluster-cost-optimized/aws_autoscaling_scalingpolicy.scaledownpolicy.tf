@@ -4,5 +4,8 @@ resource "aws_autoscaling_policy" "ScaleDownPolicy" {
   name                   = "ScaleDownPolicy"
   estimated_instance_warmup= 10
   policy_type = "StepScaling"
-  step_adjustment="[{0xc000126660 <nil> -1   [] map[] }]"
+  step_adjustment {
+     scaling_adjustment          = -1
+     metric_interval_lower_bound = 0
+  }
 }

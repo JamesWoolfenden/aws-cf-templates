@@ -3,9 +3,9 @@ resource "aws_lb" "LoadBalancer" {
   internal=false
   security_groups = [""]
   subnets        = []
-  idle_timeout=60
-  http_enabled=true
+  enable_http2 = true
   access_logs {
+    bucket=""
     enabled = false
   }
 }

@@ -10,7 +10,7 @@ resource "aws_cloudwatch_metric_alarm" "AutoScalingGroupLifecycleHookQueueTooHig
   actions_enabled=false
   insufficient_data_actions=[]
   ok_actions=[]
-  treat_missing_data=notBreaching
+  treat_missing_data="notBreaching"
   dimensions = {
     QueueName = ""
   }

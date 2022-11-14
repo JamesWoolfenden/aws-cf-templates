@@ -1,16 +1,16 @@
 resource "aws_lb_target_group" "DefaultTargetGroup" {
   health_check {
-    enabled=false
-    interval=15
-    matcher="{<nil> 0xc000112fe0   [] map[] }"
-    path = "/v1/metadata"
-    port = "51678"
-    protocol="HTTP"
-    timeout= 10
-    healthy_threshold=2
+    enabled   = false
+    interval  = 15
+    matcher   = "200-299"
+    path    = "/v1/metadata"
+    port    = "51678"
+    protocol =  "HTTP"
+    timeout   = 10
+    healthy_threshold  = 2
     unhealthy_threshold= 2
-    }
-  name= "<nil>"
-  port= 80
+  }
+  name= "DefaultTargetGroup"
+  port    = 80
   protocol= "HTTP"
 }
